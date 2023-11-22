@@ -17,6 +17,10 @@ public:
     template<class F, class... Args>
     auto enqueue(F&& f, Args&&... args) 
         -> std::future<typename std::result_of<F(Args...)>::type>;
+    inline size_t getTaskQueueSize()
+    {
+        return tasks.size();
+    }
     ~ThreadPool();
 private:
     // need to keep track of threads so we can join them
